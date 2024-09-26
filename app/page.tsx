@@ -22,10 +22,7 @@ export default async function Home() {
         }[] = await (
       await fetch(
         "https://vidsrc.me/api/m/l/page-" +
-          (Math.floor(Math.random() * 1000) + 1),
-        {
-          cache: "force-cache",
-        }
+          (Math.floor(Math.random() * 1000) + 1)
       )
     ).json();
 
