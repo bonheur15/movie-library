@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Aperture, HomeIcon } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -23,6 +24,9 @@ export default function RootLayout({
               <div className="w-fit h-fit p-[10px] m-auto rounded-[10px] bg-[#0000001f] dark:bg-[#ffffff1f]">
                 <HomeIcon />
               </div>
+              <div className="w-fit h-fit p-[10px] m-auto rounded-[10px] bg-[#0000001f] dark:bg-[#ffffff1f]">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>
@@ -33,7 +37,7 @@ export default function RootLayout({
             </div>
             <div className="w-[100%] h-fit  p-[10px]">
               <div className="w-full">
-                <form action="search">
+                <form action="/search">
                   <div className="relative">
                     <input
                       type="text"

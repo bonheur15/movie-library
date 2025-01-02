@@ -13,7 +13,7 @@ export default function page({ params }: { params: { imdb_id?: string } }) {
       <iframe
         allowFullScreen
         src={"https://vidsrc.cc/v2/embed/movie/" + params.imdb_id}
-        className="w-[100%] h-[100%] absolute inset-0 m-0"
+        className="w-[100%] h-[100%] absolute inset-0 m-0 rounded-[10px]"
       ></iframe>
     </div>
   );
