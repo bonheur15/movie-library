@@ -1,0 +1,709 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "content": {
+      "name": "content",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imdb_id": {
+          "autoincrement": false,
+          "name": "imdb_id",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_type": {
+          "autoincrement": false,
+          "name": "content_type",
+          "type": "enum('movie','series')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "year": {
+          "autoincrement": false,
+          "name": "year",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "plot": {
+          "autoincrement": false,
+          "name": "plot",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tmdb_poster_path": {
+          "autoincrement": false,
+          "name": "tmdb_poster_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tmdb_backdrop_path": {
+          "autoincrement": false,
+          "name": "tmdb_backdrop_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imdb_rating": {
+          "autoincrement": false,
+          "name": "imdb_rating",
+          "type": "decimal(3,1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "release_date": {
+          "autoincrement": false,
+          "name": "release_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "runtime": {
+          "autoincrement": false,
+          "name": "runtime",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "autoincrement": false,
+          "name": "status",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "content_id": {
+          "name": "content_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "content_genres": {
+      "name": "content_genres",
+      "columns": {
+        "content_id": {
+          "autoincrement": false,
+          "name": "content_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "genre_id": {
+          "autoincrement": false,
+          "name": "genre_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "content_genres_content_id_genre_id": {
+          "name": "content_genres_content_id_genre_id",
+          "columns": [
+            "content_id",
+            "genre_id"
+          ]
+        }
+      },
+      "indexes": {
+        "genre_id": {
+          "name": "genre_id",
+          "columns": [
+            "genre_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "content_genres_ibfk_1": {
+          "name": "content_genres_ibfk_1",
+          "tableFrom": "content_genres",
+          "tableTo": "content",
+          "columnsFrom": [
+            "content_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "content_genres_ibfk_2": {
+          "name": "content_genres_ibfk_2",
+          "tableFrom": "content_genres",
+          "tableTo": "genres",
+          "columnsFrom": [
+            "genre_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "content_keywords": {
+      "name": "content_keywords",
+      "columns": {
+        "content_id": {
+          "autoincrement": false,
+          "name": "content_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keyword_id": {
+          "autoincrement": false,
+          "name": "keyword_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "content_keywords_content_id_keyword_id": {
+          "name": "content_keywords_content_id_keyword_id",
+          "columns": [
+            "content_id",
+            "keyword_id"
+          ]
+        }
+      },
+      "indexes": {
+        "keyword_id": {
+          "name": "keyword_id",
+          "columns": [
+            "keyword_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "content_keywords_ibfk_1": {
+          "name": "content_keywords_ibfk_1",
+          "tableFrom": "content_keywords",
+          "tableTo": "content",
+          "columnsFrom": [
+            "content_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "content_keywords_ibfk_2": {
+          "name": "content_keywords_ibfk_2",
+          "tableFrom": "content_keywords",
+          "tableTo": "keywords",
+          "columnsFrom": [
+            "keyword_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "content_people": {
+      "name": "content_people",
+      "columns": {
+        "content_id": {
+          "autoincrement": false,
+          "name": "content_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "job": {
+          "autoincrement": false,
+          "name": "job",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "content_people_content_id_person_id_job": {
+          "name": "content_people_content_id_person_id_job",
+          "columns": [
+            "content_id",
+            "person_id",
+            "job"
+          ]
+        }
+      },
+      "indexes": {
+        "person_id": {
+          "name": "person_id",
+          "columns": [
+            "person_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "content_people_ibfk_1": {
+          "name": "content_people_ibfk_1",
+          "tableFrom": "content_people",
+          "tableTo": "content",
+          "columnsFrom": [
+            "content_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "content_people_ibfk_2": {
+          "name": "content_people_ibfk_2",
+          "tableFrom": "content_people",
+          "tableTo": "people",
+          "columnsFrom": [
+            "person_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "content_production_companies": {
+      "name": "content_production_companies",
+      "columns": {
+        "content_id": {
+          "autoincrement": false,
+          "name": "content_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "company_id": {
+          "autoincrement": false,
+          "name": "company_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "content_production_companies_content_id_company_id": {
+          "name": "content_production_companies_content_id_company_id",
+          "columns": [
+            "content_id",
+            "company_id"
+          ]
+        }
+      },
+      "indexes": {
+        "company_id": {
+          "name": "company_id",
+          "columns": [
+            "company_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "content_production_companies_ibfk_1": {
+          "name": "content_production_companies_ibfk_1",
+          "tableFrom": "content_production_companies",
+          "tableTo": "content",
+          "columnsFrom": [
+            "content_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "content_production_companies_ibfk_2": {
+          "name": "content_production_companies_ibfk_2",
+          "tableFrom": "content_production_companies",
+          "tableTo": "production_companies",
+          "columnsFrom": [
+            "company_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "episodes": {
+      "name": "episodes",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "season_id": {
+          "autoincrement": false,
+          "name": "season_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "episode_number": {
+          "autoincrement": false,
+          "name": "episode_number",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "plot": {
+          "autoincrement": false,
+          "name": "plot",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "release_date": {
+          "autoincrement": false,
+          "name": "release_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "runtime": {
+          "autoincrement": false,
+          "name": "runtime",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "episodes_id": {
+          "name": "episodes_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {
+        "season_id": {
+          "name": "season_id",
+          "columns": [
+            "season_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "episodes_ibfk_1": {
+          "name": "episodes_ibfk_1",
+          "tableFrom": "episodes",
+          "tableTo": "seasons",
+          "columnsFrom": [
+            "season_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "genres": {
+      "name": "genres",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "genres_id": {
+          "name": "genres_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "name": {
+          "name": "name",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "keywords": {
+      "name": "keywords",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "keywords_id": {
+          "name": "keywords_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "name": {
+          "name": "name",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "people": {
+      "name": "people",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "department": {
+          "autoincrement": false,
+          "name": "department",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "people_id": {
+          "name": "people_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "production_companies": {
+      "name": "production_companies",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "origin_country": {
+          "autoincrement": false,
+          "name": "origin_country",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "production_companies_id": {
+          "name": "production_companies_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "seasons": {
+      "name": "seasons",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_id": {
+          "autoincrement": false,
+          "name": "content_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "season_number": {
+          "autoincrement": false,
+          "name": "season_number",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "release_date": {
+          "autoincrement": false,
+          "name": "release_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "seasons_id": {
+          "name": "seasons_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {
+        "content_id": {
+          "name": "content_id",
+          "columns": [
+            "content_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "seasons_ibfk_1": {
+          "name": "seasons_ibfk_1",
+          "tableFrom": "seasons",
+          "tableTo": "content",
+          "columnsFrom": [
+            "content_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}

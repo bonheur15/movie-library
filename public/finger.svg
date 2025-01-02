@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="185 221 1036 690" width="851px" height="469px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <line x1="574" y1="565" x2="584" y2="565" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="555" y1="266" x2="545" y2="266" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="584" y1="565" x2="555" y2="266" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="581.5" y1="565" x2="577.96446609407" y2="568.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="581.5" y1="565" x2="577.96446609407" y2="561.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="550" y1="266" x2="553.53553390593" y2="269.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="550" y1="266" x2="553.53553390593" y2="262.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="272" y1="286" x2="282" y2="286" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="434" y1="266" x2="444" y2="266" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="282" y1="286" x2="434" y2="266" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="279.5" y1="286" x2="275.96446609407" y2="289.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="279.5" y1="286" x2="275.96446609407" y2="282.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="439" y1="266" x2="435.46446609407" y2="269.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="439" y1="266" x2="435.46446609407" y2="262.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <rect width="77" height="20" x="497" y="515" style="fill:#007;stroke:black;"/>
+   <text width="77" height="20" x="502" y="529" style="fill:#fff;" font-family="Arial" font-size="16px"> atm_info</text>
+   <rect width="77" height="20" x="497" y="535" style="fill:#aea;stroke:black;"/>
+   <text width="77" height="20" x="502" y="549" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="77" height="20" x="497" y="555" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="569" style="fill:black;" font-family="Arial" font-size="16px">user_id</text>
+   <rect width="77" height="20" x="497" y="575" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="589" style="fill:black;" font-family="Arial" font-size="16px">balance</text>
+   <rect width="77" height="20" x="497" y="595" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="609" style="fill:black;" font-family="Arial" font-size="16px">deposit</text>
+   <rect width="77" height="20" x="497" y="615" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="629" style="fill:black;" font-family="Arial" font-size="16px">withdrawl</text>
+   <rect width="77" height="20" x="497" y="635" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="649" style="fill:black;" font-family="Arial" font-size="16px">status</text>
+   <rect width="77" height="20" x="497" y="655" style="fill:none;stroke:black;"/>
+   <text width="77" height="20" x="502" y="669" style="fill:black;" font-family="Arial" font-size="16px">timer</text>
+   <rect width="124" height="20" x="897" y="239" style="fill:#007;stroke:black;"/>
+   <text width="124" height="20" x="902" y="253" style="fill:#fff;" font-family="Arial" font-size="16px"> background_task</text>
+   <rect width="124" height="20" x="897" y="259" style="fill:#aea;stroke:black;"/>
+   <text width="124" height="20" x="902" y="273" style="fill:black;" font-family="Arial" font-size="16px">task_name</text>
+   <rect width="124" height="20" x="897" y="279" style="fill:none;stroke:black;"/>
+   <text width="124" height="20" x="902" y="293" style="fill:black;" font-family="Arial" font-size="16px">stage</text>
+   <rect width="124" height="20" x="897" y="299" style="fill:none;stroke:black;"/>
+   <text width="124" height="20" x="902" y="313" style="fill:black;" font-family="Arial" font-size="16px">last_update</text>
+   <rect width="72" height="20" x="200" y="236" style="fill:#007;stroke:black;"/>
+   <text width="72" height="20" x="205" y="250" style="fill:#fff;" font-family="Arial" font-size="16px"> faceuuid</text>
+   <rect width="72" height="20" x="200" y="256" style="fill:none;stroke:black;"/>
+   <text width="72" height="20" x="205" y="270" style="fill:black;" font-family="Arial" font-size="16px">uuid</text>
+   <rect width="72" height="20" x="200" y="276" style="fill:none;stroke:black;"/>
+   <text width="72" height="20" x="205" y="290" style="fill:black;" font-family="Arial" font-size="16px">user_id</text>
+   <rect width="76" height="20" x="675" y="236" style="fill:#007;stroke:black;"/>
+   <text width="76" height="20" x="680" y="250" style="fill:#fff;" font-family="Arial" font-size="16px"> get</text>
+   <rect width="76" height="20" x="675" y="256" style="fill:#aea;stroke:black;"/>
+   <text width="76" height="20" x="680" y="270" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="76" height="20" x="675" y="276" style="fill:none;stroke:black;"/>
+   <text width="76" height="20" x="680" y="290" style="fill:black;" font-family="Arial" font-size="16px">finger</text>
+   <rect width="76" height="20" x="675" y="296" style="fill:none;stroke:black;"/>
+   <text width="76" height="20" x="680" y="310" style="fill:black;" font-family="Arial" font-size="16px">finger_set</text>
+   <rect width="76" height="20" x="675" y="316" style="fill:none;stroke:black;"/>
+   <text width="76" height="20" x="680" y="330" style="fill:black;" font-family="Arial" font-size="16px">time</text>
+   <rect width="101" height="20" x="444" y="236" style="fill:#007;stroke:black;"/>
+   <text width="101" height="20" x="449" y="250" style="fill:#fff;" font-family="Arial" font-size="16px"> users</text>
+   <rect width="101" height="20" x="444" y="256" style="fill:#aea;stroke:black;"/>
+   <text width="101" height="20" x="449" y="270" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="101" height="20" x="444" y="276" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="290" style="fill:black;" font-family="Arial" font-size="16px">username</text>
+   <rect width="101" height="20" x="444" y="296" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="310" style="fill:black;" font-family="Arial" font-size="16px">email</text>
+   <rect width="101" height="20" x="444" y="316" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="330" style="fill:black;" font-family="Arial" font-size="16px">phone</text>
+   <rect width="101" height="20" x="444" y="336" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="350" style="fill:black;" font-family="Arial" font-size="16px">password</text>
+   <rect width="101" height="20" x="444" y="356" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="370" style="fill:black;" font-family="Arial" font-size="16px">account_type</text>
+   <rect width="101" height="20" x="444" y="376" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="390" style="fill:black;" font-family="Arial" font-size="16px">finger_print</text>
+   <rect width="101" height="20" x="444" y="396" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="449" y="410" style="fill:black;" font-family="Arial" font-size="16px">time</text>
+</svg>

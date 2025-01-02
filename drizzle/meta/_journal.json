@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1735662162849,
+      "tag": "0000_messy_leper_queen",
+      "breakpoints": true
+    }
+  ]
+}

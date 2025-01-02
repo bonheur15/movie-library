@@ -1,147 +1,104 @@
-import { PlayIcon } from "lucide-react";
-import Link from "next/link";
-import { Suspense } from "react";
-interface Isimple_error {
-  error: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isSimpleError(response: any): response is Isimple_error {
-  return response && typeof response.error === "string";
-}
-export default async function Home() {
-  let imdbIds: {
-    imdb_id: string;
-    quality: string;
-  }[] = [];
-  try {
-    const response:
-      | Isimple_error
-      | {
-          imdb_id: string;
-          quality: string;
-        }[] = await (
-      await fetch(
-        "https://vidsrc.me/api/m/l/page-" +
-          (Math.floor(Math.random() * 1000) + 1)
-      )
-    ).json();
+import { Button } from "@/components/ui/button";
 
-    if (!isSimpleError(response)) imdbIds = response;
-
-    // imdbIds =
-    console.log(imdbIds);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {}
-
+export default function Home() {
   return (
     <>
-      <div className="text-[20px] font-bold w-[100%] py-[10px] text-center">
-        Random Movie to watch
-      </div>
-      <div className="flex justify-center flex-col py-[40px] h-[100vh]">
-        <div className="h-fit pb-[80px] px-[40px] gap-[60px] rounded-[20px] bg-gray-100 w-[100%] grid lg:grid-cols-3 max-w-[1800px] md:grid-cols-2 grid-cols-1">
-          {imdbIds.length == 0 && <>No movie available try refresh again</>}
-          {imdbIds.map((item, i) => {
-            if (i > 5) return null;
-            return (
-              <Suspense key={item.imdb_id} fallback={<p>Loading Movie.</p>}>
-                <MovieCard imdb_id={item.imdb_id} quality={item.quality} />
-              </Suspense>
-            );
-          })}
-        </div>
-      </div>
-    </>
-  );
-}
+      <div>
+        <>
+          {/* component */}
+          <div>
+            <div
+              className="h-screen flex justify-center items-center bg-cover bg-center"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url("https://assets.nflxext.com/ffe/siteui/vlv3/c0a32732-b033-43b3-be2a-8fee037a6146/2fe6e3c0-5613-4625-a0c1-3d605effd10b/IN-en-20210607-popsignuptwoweeks-perspective_alpha_website_large.jpg")',
+              }}
+            >
+              <div className="space-y-5">
+                <p className="text-white font-bold text-5xl flex flex-col items-center">
+                  <span>
+                    Unlimited movies, TV shows, and more <br />
+                  </span>
+                </p>
 
-async function MovieCard({
-  imdb_id,
-  quality,
-}: {
-  imdb_id: string;
-  quality: string;
-}) {
-  console.log(quality);
-  let movieData: {
-    general?: {
-      genres?: string[];
-      title?: string;
-      year?: string;
-      plot?: string;
-      imdb_rating?: string;
-    };
-    tmdb?: {
-      backdrop_path?: string;
-      poster_path?: string;
-    };
-  } | null = {};
-  try {
-    movieData = await (
-      await fetch("https://vidsrc.me/api/m/" + imdb_id)
-    ).json();
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (_) {
-    movieData = null;
-  }
-
-  return (
-    <>
-      {movieData && (
-        <div className="py-3 sm:max-w-xl sm:mx-auto">
-          <div className="bg-[#efeeee] shadow-xl img-container relative transition-all hover:[box-shadow:inset_4px_-2px_13px_6px_#ffffff7a] border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8">
-            <div className="h-48 overflow-visible w-1/2 d relative">
-              <img
-                className="rounded-3xl shadow-lg"
-                src={
-                  "https://image.tmdb.org/t/p/original/" +
-                  movieData.tmdb?.poster_path
-                }
-                alt=""
-              />
-              {/* <img
-                className="rounded-3xl shadow-lg image-animate top-0 absolute bottom-0"
-                src={
-                  "https://image.tmdb.org/t/p/original/" +
-                  movieData.tmdb?.poster_path
-                }
-                alt=""
-              /> */}
-            </div>
-            <div className="flex flex-col w-1/2 space-y-4">
-              <div className="flex justify-between items-start">
-                <h2 className="text-3xl font-bold">
-                  {movieData?.general?.title?.substring(0, 15)}
-                </h2>
-                <div className="bg-yellow-400 font-bold rounded-xl p-2">
-                  {movieData.general?.imdb_rating}
-                </div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-400">Movie</div>
-                <div className="text-lg text-gray-800">
-                  {movieData.general?.year}
-                </div>
-              </div>
-              <p className=" text-gray-400 max-h-40 overflow-y-hidden">
-                {movieData.general?.plot}
-              </p>
-              <div className=" text-2xl font-bold w-fit h-fit   grid place-items-center">
-                <Link href={"/watch/" + imdb_id}>
-                  <div className="cont block">
-                    <div className="fas">
-                      <PlayIcon size={19} />
+                <p className="text-white text-lg flex flex-col items-center">
+                  Enjoy all variate of movies collections.
+                </p>
+                <div className="flex flex-row items-center justify-center w-[100%]">
+                  <form className="w-[100%]">
+                    <label
+                      htmlFor="default-search"
+                      className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+                    >
+                      Search
+                    </label>
+                    <div className="relative">
+                      <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg
+                          className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <title>Icons</title>
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="search"
+                        id="default-search"
+                        className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search Movie,Genres"
+                      />
+                      <button
+                        type="submit"
+                        className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        Search
+                      </button>
                     </div>
-                  </div>
-                </Link>
+                  </form>
+                </div>
+                <div className="mx-auto w-[100%] h-fit py-[20px] flex justify-center">
+                  <Button className="px-[50px] scale-[1.2] bg-blue-600">
+                    Explore Home
+                  </Button>
+                </div>
               </div>
             </div>
+            <hr />
+            <div className="w-[100%] bg-black">
+              <div className="h-screen max-w-[90vw] mx-auto flex flex-col lg:flex-row items-center justify-center bg-black p-5">
+                <div className="space-y-5 p-5 text-center lg:text-left lg:w-1/2">
+                  <p className="text-white font-bold text-3xl md:text-4xl">
+                    Enjoy on your TV.
+                  </p>
+                  <p className="text-white font-semibold text-lg md:text-xl">
+                    Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
+                    Blu-ray players and more.
+                  </p>
+                </div>
+                <div className="mt-5 lg:mt-0 lg:w-1/2 flex justify-center">
+                  <img
+                    alt="TV"
+                    src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
+                    className="w-full max-w-lg"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <hr />
+            <hr />
           </div>
-        </div>
-      )}
+        </>
+      </div>
     </>
   );
 }
-
-export const dynamic = "force-dynamic";
