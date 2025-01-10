@@ -1,6 +1,6 @@
 import { db } from "@/drizzle";
 import { content } from "@/drizzle/schema";
-import { and, desc, eq, gte, inArray, not } from "drizzle-orm";
+import { and, desc, eq, gte, inArray, not, or } from "drizzle-orm";
 import Image from "next/image";
 import { ContentCard } from "../_components/common";
 
@@ -35,6 +35,7 @@ async function MoreToWatchGrid() {
         ),
         eq(content.status, "Released"),
         gte(content.year, 2012),
+        gte(content.imdbRating, "5"),
         not(eq(content.tmdbPosterPath, "")),
         not(eq(content.tmdbBackdropPath, ""))
       )
@@ -102,10 +103,12 @@ async function LatestMoviesGrid() {
     .select()
     .from(content)
     .limit(20)
-    .orderBy(desc(content.releaseDate), desc(content.year))
+    .orderBy(desc(content.year), desc(content.releaseDate))
     .where(
       and(
         eq(content.status, "Released"),
+        eq(content.contentType, "movie"),
+        // or(gte(content.imdbRating, "4"), eq(content.imdbRating, "")),
         not(eq(content.tmdbPosterPath, "")),
         not(eq(content.tmdbBackdropPath, ""))
       )
@@ -128,11 +131,16 @@ async function LatestSeriesGrid() {
     .select()
     .from(content)
     .limit(20)
-    .orderBy(desc(content.releaseDate), desc(content.year))
+    .orderBy(desc(content.year), desc(content.releaseDate))
     .where(
       and(
         eq(content.contentType, "series"),
-        eq(content.status, "Released"),
+        or(
+          eq(content.status, "Released"),
+          eq(content.status, "Ended"),
+          eq(content.status, "Returning Series")
+        ),
+        gte(content.year, 2015),
         not(eq(content.tmdbPosterPath, "")),
         not(eq(content.tmdbBackdropPath, ""))
       )

@@ -228,5 +228,3 @@ function retrieveIdFromSlug({ slug }: { slug: string }) {
   // return num;
   return Number(new_slug);
 }
-
-export const dynamic = "force-dynamic";
