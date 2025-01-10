@@ -1,14 +1,14 @@
 import { db } from "@/drizzle";
 import { content } from "@/drizzle/schema";
-import { and, desc, eq, gte, inArray } from "drizzle-orm";
+import { and, desc, eq, gte, inArray, not } from "drizzle-orm";
 import Image from "next/image";
 import { ContentCard } from "../_components/common";
 
 export default async function Home() {
   return (
     <>
-      <div className="w-[100%] h-[100%]  overflow-auto">
-        <div className="container mx-auto px-4 py-8 h-[100%]">
+      <div className="w-[100%] h-[100%]  overflow-auto ">
+        <div className="mx-auto px-4 md:px-[40px] py-8 h-[100%] w-[100%]">
           <TrendingGrid />
           <LatestMoviesGrid />
           <LatestSeriesGrid />
@@ -22,7 +22,7 @@ async function MoreToWatchGrid() {
   const random_contents = await db
     .select()
     .from(content)
-    .limit(20)
+    .limit(4)
     .orderBy(desc(content.releaseDate), desc(content.year))
     .where(
       and(
@@ -34,7 +34,9 @@ async function MoreToWatchGrid() {
           )
         ),
         eq(content.status, "Released"),
-        gte(content.year, 2012)
+        gte(content.year, 2012),
+        not(eq(content.tmdbPosterPath, "")),
+        not(eq(content.tmdbBackdropPath, ""))
       )
     );
   return (
@@ -73,7 +75,13 @@ async function TrendingGrid() {
     .from(content)
     .limit(20)
     .orderBy(desc(content.releaseDate), desc(content.year))
-    .where(and(eq(content.status, "Released"), gte(content.imdbRating, "9.6")));
+    .where(
+      and(
+        eq(content.status, "Released"),
+        gte(content.imdbRating, "8"),
+        not(eq(content.tmdbPosterPath, ""))
+      )
+    );
   return (
     <>
       <div>
@@ -81,26 +89,7 @@ async function TrendingGrid() {
         <div className="flex gap-4 overflow-auto w-[100%]">
           {trending_content.map((movie) => {
             return (
-              <div
-                key={movie.imdbId}
-                className="bg-gray-100 dark:bg-gray-800 min-w-[300px] rounded-lg overflow-hidden shadow-md"
-              >
-                <Image
-                  height={300}
-                  width={300}
-                  src={`https://image.tmdb.org/t/p/original${movie.tmdbBackdropPath}`}
-                  alt="Squid Game"
-                  className="w-full h-[400px] object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold ">{movie.title}</h3>
-                  <p className="text-sm text-gray-400">
-                    {movie.year} •{" "}
-                    {movie.contentType === "movie" ? "Movie" : "Tv Show"} •{" "}
-                    {movie.imdbRating ?? "---"}
-                  </p>
-                </div>
-              </div>
+              <ContentCard key={movie.imdbId} movie={movie} type="trending" />
             );
           })}
         </div>
@@ -114,7 +103,13 @@ async function LatestMoviesGrid() {
     .from(content)
     .limit(20)
     .orderBy(desc(content.releaseDate), desc(content.year))
-    .where(eq(content.status, "Released"));
+    .where(
+      and(
+        eq(content.status, "Released"),
+        not(eq(content.tmdbPosterPath, "")),
+        not(eq(content.tmdbBackdropPath, ""))
+      )
+    );
   return (
     <>
       <div className="mt-12">
@@ -135,12 +130,17 @@ async function LatestSeriesGrid() {
     .limit(20)
     .orderBy(desc(content.releaseDate), desc(content.year))
     .where(
-      and(eq(content.contentType, "series"), eq(content.status, "Released"))
+      and(
+        eq(content.contentType, "series"),
+        eq(content.status, "Released"),
+        not(eq(content.tmdbPosterPath, "")),
+        not(eq(content.tmdbBackdropPath, ""))
+      )
     );
   return (
     <>
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Latest Movies </h2>
+        <h2 className="text-2xl font-bold mb-4">Latest Tv Shows </h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {latest_movies.map((movie) => {
             return <ContentCard key={movie.imdbId} movie={movie} />;

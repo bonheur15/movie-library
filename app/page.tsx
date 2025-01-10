@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
                   Enjoy all variate of movies collections.
                 </p>
                 <div className="flex flex-row items-center justify-center w-[100%]">
-                  <form className="w-[100%]">
+                  <form className="w-[100%]" action={"search"}>
                     <label
                       htmlFor="default-search"
                       className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -52,6 +53,7 @@ export default function Home() {
                       </div>
                       <input
                         type="search"
+                        name="query"
                         id="default-search"
                         className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search Movie,Genres"
@@ -66,9 +68,11 @@ export default function Home() {
                   </form>
                 </div>
                 <div className="mx-auto w-[100%] h-fit py-[20px] flex justify-center">
-                  <Button className="px-[50px] scale-[1.2] bg-blue-600">
-                    Explore Home
-                  </Button>
+                  <Link href={"/home"} prefetch={false}>
+                    <Button className="px-[50px] scale-[1.2] bg-blue-600">
+                      Explore Home
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

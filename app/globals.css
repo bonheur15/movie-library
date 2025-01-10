@@ -119,22 +119,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
-.big-on-hover:hover > .big-on-hover-div{
-
+.big-on-hover:hover > .big-on-hover-div {
   background-color: transparent;
   width: 100%;
   margin: auto;
   height: 100%;
-
-
 }
-.big-on-hover-div,.big-on-hover-img{
+.big-on-hover-div,
+.big-on-hover-img {
   transition: 500ms;
 }
-.big-on-hover:hover > .big-on-hover-div > .big-on-hover-img{
+.big-on-hover:hover > .big-on-hover-div > .big-on-hover-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
   border-radius: 10px;
+}
+
+#season-selector:hover > #episode-container {
+  transition: 500ms;
+  height: fit-content;
+}
+
+#episode-container {
+  transition: 500ms;
+  height: 0px;
+  overflow: hidden;
 }
