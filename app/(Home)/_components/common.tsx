@@ -8,7 +8,7 @@ export function ContentCard({
   type = "default",
 }: {
   movie: InferSelectModel<typeof content>;
-  type?: "default" | "trending" | "other";
+  type?: "default" | "trending" | "extra" | "other";
 }) {
   return (
     <Link
@@ -20,6 +20,7 @@ export function ContentCard({
     >
       {type === "default" && <DefaultCard movie={movie} />}
       {type === "trending" && <TrendingCard movie={movie} />}
+      {type === "extra" && <ExtraCard movie={movie} />}
     </Link>
   );
 }
@@ -77,6 +78,25 @@ function TrendingCard({ movie }: { movie: InferSelectModel<typeof content> }) {
   );
 }
 
+function ExtraCard({ movie }: { movie: InferSelectModel<typeof content> }) {
+  return (
+    <div className="rounded-lg overflow-hidden">
+      <Image
+        height={300}
+        width={300}
+        src={`https://image.tmdb.org/t/p/original${movie.tmdbBackdropPath}`}
+        alt="Squid Game"
+        className="w-full h-[250px] object-cover object-top"
+      />
+      <div className="pt-[5px] w-[100%]">
+        <p className="text-sm text-gray-400 font-mono">
+          {movie.year} • {movie.contentType === "movie" ? "Movie" : "Tv Show"} •{" "}
+        </p>
+        <h3 className="text-lg font-semibold">{movie.title}</h3>
+      </div>
+    </div>
+  );
+}
 function generateSlug({
   id,
   title,

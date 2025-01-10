@@ -147,3 +147,31 @@ body {
   height: 0px;
   overflow: hidden;
 }
+
+
+
+/* General scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px; /* Width for vertical scrollbar */
+  height: 8px; /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555; /* Dark gray thumb for dark mode */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Slightly lighter gray on hover */
+}
+
+::-webkit-scrollbar-track {
+  background: #222; /* Dark background for the track */
+  border-radius: 4px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #555 #222; /* Thumb and track colors */
+}

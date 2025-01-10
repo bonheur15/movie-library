@@ -1,7 +1,7 @@
 import { db } from "@/drizzle";
 import { content } from "@/drizzle/schema";
 import { and, desc, eq, gte, inArray, not, or } from "drizzle-orm";
-import Image from "next/image";
+
 import { ContentCard } from "../_components/common";
 
 export default async function Home() {
@@ -47,22 +47,7 @@ async function MoreToWatchGrid() {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {random_contents.map((movie) => {
             return (
-              <div className="rounded-lg overflow-hidden" key={movie.id}>
-                <Image
-                  height={300}
-                  width={300}
-                  src={`https://image.tmdb.org/t/p/original${movie.tmdbBackdropPath}`}
-                  alt="Squid Game"
-                  className="w-full h-[250px] object-cover object-top"
-                />
-                <div className="pt-[5px] w-[100%]">
-                  <p className="text-sm text-gray-400 font-mono">
-                    {movie.year} •{" "}
-                    {movie.contentType === "movie" ? "Movie" : "Tv Show"} •{" "}
-                  </p>
-                  <h3 className="text-lg font-semibold">{movie.title}</h3>
-                </div>
-              </div>
+              <ContentCard key={movie.imdbId} movie={movie} type="extra" />
             );
           })}
         </div>
