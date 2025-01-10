@@ -75,10 +75,14 @@ async function TrendingGrid() {
     .select()
     .from(content)
     .limit(20)
-    .orderBy(desc(content.releaseDate), desc(content.year))
+    .orderBy(desc(content.year), desc(content.releaseDate))
     .where(
       and(
-        eq(content.status, "Released"),
+        or(
+          eq(content.status, "Released"),
+          eq(content.status, "Ended"),
+          eq(content.status, "Returning Series")
+        ),
         gte(content.imdbRating, "8"),
         not(eq(content.tmdbPosterPath, ""))
       )

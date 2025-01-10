@@ -1,6 +1,6 @@
 import { db } from "@/drizzle";
 import { content } from "@/drizzle/schema";
-import { and, desc, eq, like } from "drizzle-orm";
+import { and, desc, eq, like, not, or } from "drizzle-orm";
 import React from "react";
 import { ContentCard } from "../_components/common";
 
@@ -30,8 +30,14 @@ async function SearchResultsContentGrid({ query }: { query?: string }) {
     .orderBy(desc(content.releaseDate), desc(content.year))
     .where(
       and(
-        eq(content.status, "Released"),
-        like(content.title, `%${query ?? ""}%`)
+        or(
+          eq(content.status, "Released"),
+          eq(content.status, "Ended"),
+          eq(content.status, "Returning Series")
+        ),
+        like(content.title, `%${query ?? ""}%`),
+        not(eq(content.tmdbPosterPath, "")),
+        not(eq(content.tmdbBackdropPath, ""))
       )
     );
   return (

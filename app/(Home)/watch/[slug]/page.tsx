@@ -73,12 +73,20 @@ function SeriesPlayer({
 }) {
   return (
     <>
-      <iframe
+      {/* <iframe
         title="video player"
         allowFullScreen
         src={`https://vidsrc.cc/v2/embed/tv/${imdb_id}/${selected.season}/${selected.episode}?autoPlay=false`}
         className="w-[100%] h-[100%] m-0 rounded-[10px]"
+      /> */}
+
+      <iframe
+        title="video player"
+        allowFullScreen
+        src={`https://www.2embed.skin/embedtv/${imdb_id}&s=${selected.season}&e=${selected.episode}`}
+        className="w-[100%] h-[100%] m-0 rounded-[10px]"
       />
+
       <SeriesSelector
         content_id={content_id}
         selected={{
@@ -175,6 +183,7 @@ async function SeriesSelector({
           );
         })}
       </div>
+
       <div id="episode-container">
         <div className="grid grid-cols-4 gap-2" id="season-1-episodes">
           {all_seasons
