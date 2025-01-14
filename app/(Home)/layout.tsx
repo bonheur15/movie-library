@@ -17,7 +17,7 @@ export default function RootLayout({
               <Link href={"/home"}>
                 <Image
                   src={"/bingo.png"}
-                  className="rounded-[5px]"
+                  className="rounded-[5px] "
                   width={200}
                   height={200}
                   alt=""
@@ -43,7 +43,7 @@ export default function RootLayout({
               <Link href={"/home"}>
                 <Image
                   src={"/bingo.png"}
-                  className="rounded-[5px]"
+                  className="rounded-[5px] w-[60px] h-[60px]"
                   width={200}
                   height={200}
                   alt=""
