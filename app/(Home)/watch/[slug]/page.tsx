@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { db } from "@/drizzle";
 import { content, episodes, seasons } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
 {
@@ -37,6 +38,10 @@ export default async function page({
   )[0];
   return (
     <div className="relative w-[100%] h-[100%] flex flex-col">
+      <div className="absolute inset-0 w-[100%] flex h-[100%]  z-[1]">
+        {/* loader */}
+        <Loader2 className="m-auto animate-spin" size={50} />
+      </div>
       {current_content.contentType === "series" && (
         <SeriesPlayer
           content_id={current_content.id}
@@ -52,7 +57,7 @@ export default async function page({
           title="video player"
           allowFullScreen
           src={`https://vidsrc.cc/v2/embed/movie/${current_content.imdbId}`}
-          className="w-[100%] h-[100%] m-0 rounded-[10px]"
+          className="w-[100%] h-[100%] m-0 rounded-[10px] block z-[2]"
         />
       )}
     </div>
@@ -84,7 +89,7 @@ function SeriesPlayer({
         title="video player"
         allowFullScreen
         src={`https://www.2embed.skin/embedtv/${imdb_id}&s=${selected.season}&e=${selected.episode}`}
-        className="w-[100%] h-[100%] m-0 rounded-[10px]"
+        className="w-[100%] h-[100%] m-0 rounded-[10px] block z-[2]"
       />
 
       <SeriesSelector
@@ -148,7 +153,7 @@ async function SeriesSelector({
   return (
     <div
       id="season-selector"
-      className="md:bg-white md:dark:bg-gray-800 p-6 rounded-lg mb-[60px] md:shadow-lg md:max-w-lg md:w-fit w-full md:absolute right-0 top-0 md:m-[20px]"
+      className="md:bg-white block z-[2] md:dark:bg-gray-800 p-6 rounded-lg mb-[60px] md:shadow-lg md:max-w-lg md:w-fit w-full md:absolute right-0 top-0 md:m-[20px]"
     >
       <div
         className="flex w-[100%] border-b border-gray-200 dark:border-gray-700 mb-4"

@@ -1,5 +1,6 @@
 import type { content } from "@/drizzle/schema";
 import type { InferSelectModel } from "drizzle-orm";
+import { PlayIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,20 +9,22 @@ export function ContentCard({
   type = "default",
 }: {
   movie: InferSelectModel<typeof content>;
-  type?: "default" | "trending" | "extra" | "other";
+  type?: "default" | "trending" | "extra" | "largcard" | "other";
 }) {
+  const href = `watch/${generateSlug({
+    id: movie.id,
+    title: movie.title,
+    year: movie.year,
+  })}`;
   return (
-    <Link
-      href={`watch/${generateSlug({
-        id: movie.id,
-        title: movie.title,
-        year: movie.year,
-      })}`}
-    >
-      {type === "default" && <DefaultCard movie={movie} />}
-      {type === "trending" && <TrendingCard movie={movie} />}
-      {type === "extra" && <ExtraCard movie={movie} />}
-    </Link>
+    <>
+      <Link href={href}>
+        {type === "default" && <DefaultCard movie={movie} />}
+        {type === "trending" && <TrendingCard movie={movie} />}
+        {type === "extra" && <ExtraCard movie={movie} />}
+      </Link>
+      {type === "largcard" && <LargeCard movie={movie} href={href} />}
+    </>
   );
 }
 
@@ -58,14 +61,14 @@ function TrendingCard({ movie }: { movie: InferSelectModel<typeof content> }) {
   return (
     <div
       key={movie.imdbId}
-      className="bg-gray-100 dark:bg-gray-800 lg:min-w-[500px] min-w-[300px] rounded-lg overflow-hidden shadow-md"
+      className="bg-gray-100 dark:bg-gray-800 lg:min-w-[500px] min-w-[300px]  rounded-lg overflow-hidden shadow-md"
     >
       <Image
         height={700}
         width={700}
         src={`https://image.tmdb.org/t/p/original${movie.tmdbBackdropPath}`}
         alt="Squid Game"
-        className="w-full h-[400px] object-cover"
+        className="w-full h-[200px] object-cover object-top"
       />
       <div className="p-4">
         <h3 className="text-lg font-semibold truncate ...">{movie.title}</h3>
@@ -116,4 +119,51 @@ function generateSlug({
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")}-${year}`;
+}
+
+function LargeCard({
+  movie,
+  href,
+}: {
+  movie: InferSelectModel<typeof content>;
+  href: string;
+}) {
+  return (
+    <div className="w-[100%] h-fit relative">
+      <Image
+        src={`https://image.tmdb.org/t/p/original${movie.tmdbBackdropPath}`}
+        width={900}
+        height={900}
+        alt=""
+        unoptimized
+        className="h-[600px] max-h-[80vh] w-[100%] object-cover object-top rounded-[20px] [filter:blur(2px)_drop-shadow(1px_1px_1px_black)_brightness(0.5)]   md:[filter:blur(2px)_drop-shadow(1px_1px_1px_black)_brightness(0.8)]"
+      />
+      <div className="absolute md:left-[50px] bottom-[20px] left-[20px]">
+        <Image
+          src={`https://image.tmdb.org/t/p/original${movie.tmdbPosterPath}`}
+          width={300}
+          height={300}
+          alt=""
+          unoptimized
+          className="w-[200px] md:w-[300px] rounded-[10px] border-solid border-[5px] border-white"
+        />
+
+        <h1 className="text-4xl font-bold text-white shadow-sm py-2">
+          {movie.title}
+        </h1>
+        <p className="text-lg text-white">
+          {movie.year} • {movie.contentType === "movie" ? "Movie" : "Tv Show"} •{" "}
+          {movie.imdbRating ?? "---"}
+        </p>
+      </div>
+      <div className="absolute max-w-[500px]  top-[20px] md:top-auto md:bottom-[50px] md:right-[50px] right-[20px] gap-[20px] flex flex-col">
+        <Link href={href} className="w-fit ml-[auto]">
+          <div className="bg-white w-fit rounded-full py-[10px] dark:bg-gray-700 px-[30px] cursor-pointer flex items-center gap-2 shadow-md">
+            <PlayIcon />
+            Play
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
 }

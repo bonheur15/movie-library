@@ -5,10 +5,42 @@ import { and, desc, eq, gte, inArray, not, or } from "drizzle-orm";
 import { ContentCard } from "../_components/common";
 
 export default async function Home() {
+  const randommovie = await db
+    .select()
+    .from(content)
+    .limit(1)
+    .orderBy(
+      desc(content.year),
+      desc(content.releaseDate),
+      desc(content.imdbRating)
+    )
+    .where(
+      and(
+        inArray(
+          content.id,
+          Array.from(
+            { length: 60 },
+            () => Math.floor(Math.random() * (100000 - 10 + 1)) + 10
+          )
+        ),
+        or(
+          eq(content.status, "Released"),
+          eq(content.status, "Ended"),
+          eq(content.status, "Returning Series")
+        ),
+        gte(content.year, 2020),
+        gte(content.imdbRating, "4"),
+        not(eq(content.tmdbPosterPath, "")),
+        not(eq(content.tmdbBackdropPath, ""))
+      )
+    );
   return (
     <>
       <div className="w-[100%] h-[100%]  overflow-auto ">
-        <div className="mx-auto px-4 md:px-[40px] py-8 h-[100%] w-[100%]">
+        <div className="w-[100%] p-[20px]">
+          <ContentCard movie={randommovie[0]} type="largcard" />
+        </div>
+        <div className="mx-auto px-4 md:px-[40px] pb-8  pt-[4] h-[100%] w-[100%]">
           <TrendingGrid />
           <LatestMoviesGrid />
           <LatestSeriesGrid />
@@ -23,19 +55,23 @@ async function MoreToWatchGrid() {
     .select()
     .from(content)
     .limit(4)
-    .orderBy(desc(content.releaseDate), desc(content.year))
+    .orderBy(desc(content.year), desc(content.releaseDate))
     .where(
       and(
         inArray(
           content.id,
           Array.from(
-            { length: 10 },
+            { length: 60 },
             () => Math.floor(Math.random() * (100000 - 10 + 1)) + 10
           )
         ),
-        eq(content.status, "Released"),
-        gte(content.year, 2012),
-        gte(content.imdbRating, "5"),
+        or(
+          eq(content.status, "Released"),
+          eq(content.status, "Ended"),
+          eq(content.status, "Returning Series")
+        ),
+        gte(content.year, 2020),
+        gte(content.imdbRating, "4"),
         not(eq(content.tmdbPosterPath, "")),
         not(eq(content.tmdbBackdropPath, ""))
       )
@@ -76,7 +112,7 @@ async function TrendingGrid() {
     <>
       <div>
         <h2 className="text-2xl font-bold mb-4">Trending</h2>
-        <div className="flex gap-4 overflow-auto w-[100%]">
+        <div className="flex gap-4 overflow-auto w-[100%] py-[10px]">
           {trending_content.map((movie) => {
             return (
               <ContentCard key={movie.imdbId} movie={movie} type="trending" />

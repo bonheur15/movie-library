@@ -1,6 +1,7 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Aperture, HomeIcon } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,15 +16,20 @@ export default function RootLayout({
   return (
     <>
       <div className="w-[100%] flex md:flex-row flex-col dark:bg-[#10141e] bg-gray-200">
-        <div className="md:w-[100px] h-[100px] md:h-[100vh] pl-[15px] md:pr-[7px] p-[15px] py-[15px] md:relative fixed bottom-0 left-0 right-0 z-[999]">
-          <div className="h-[100%] relative dark:bg-[#161d2f] w-[100%] rounded-[10px] bg-gray-50 shadow-sm flex">
+        <div className="md:w-[100px] h-[100px] md:h-[100vh] pl-[15px] md:pr-[7px] p-[15px] py-[15px] md:relative fixed bottom-0 left-0 right-0 z-[999] ">
+          <div className="h-[100%] relative dark:bg-[#212c49] shadow-md  w-fit mx-auto rounded-[10px] md:bg-white bg-[#e7e7e7] flex">
             <div className="absolute top-0 left-0 right-0 hidden text-blue-300 md:flex justify-center items-center h-fit w-fit p-[20px]">
-              <Aperture size={40} />
+              <Link href={"/home"}>
+                <Aperture size={40} />
+              </Link>
             </div>
-            <div className="md:h-fit h-[100%] w-[100%] grid grid-cols-4 md:grid-cols-1 gap-[20px] my-auto ">
+            <div className="md:h-fit h-[100%] w-fit mx-auto md:px-[10px] px-[20px] grid grid-cols-2 md:grid-cols-1 gap-[20px] my-auto ">
               <div className="w-fit h-fit p-[10px] m-auto rounded-[10px] bg-[#0000001f] dark:bg-[#ffffff1f]">
-                <HomeIcon />
+                <Link href={"/home"}>
+                  <HomeIcon />
+                </Link>
               </div>
+
               <div className="w-fit h-fit p-[10px] m-auto rounded-[10px] bg-[#0000001f] dark:bg-[#ffffff1f]">
                 <ThemeToggle />
               </div>
@@ -33,7 +39,9 @@ export default function RootLayout({
         <div className="md:w-[calc(100vw_-_100px)] h-[calc(100vh_-_100px)] md:pl-[10px] p-[20px] pr-[20px] py-[20px]">
           <div className="w-[100%] h-[100px] relative flex justify-center items-center ">
             <div className=" text-blue-300 md:hidden flex justify-center items-center h-fit w-fit p-[20px]">
-              <Aperture size={40} />
+              <Link href={"/home"}>
+                <Aperture size={40} />
+              </Link>
             </div>
             <div className="w-[100%] h-fit  p-[10px]">
               <div className="w-full">

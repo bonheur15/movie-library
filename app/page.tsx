@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -15,9 +16,9 @@ export default function Home() {
                   'linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url("https://assets.nflxext.com/ffe/siteui/vlv3/c0a32732-b033-43b3-be2a-8fee037a6146/2fe6e3c0-5613-4625-a0c1-3d605effd10b/IN-en-20210607-popsignuptwoweeks-perspective_alpha_website_large.jpg")',
               }}
             >
-              <div className="space-y-5">
-                <p className="text-white font-bold text-5xl flex flex-col items-center">
-                  <span>
+              <div className="space-y-5 px-[20px]">
+                <p className="text-white font-bold md:text-5xl text-2xl flex flex-col items-center">
+                  <span className="text-center">
                     Unlimited movies, TV shows, and more <br />
                   </span>
                 </p>
@@ -81,25 +82,23 @@ export default function Home() {
               <div className="h-screen max-w-[90vw] mx-auto flex flex-col lg:flex-row items-center justify-center bg-black p-5">
                 <div className="space-y-5 p-5 text-center lg:text-left lg:w-1/2">
                   <p className="text-white font-bold text-3xl md:text-4xl">
-                    Enjoy on your TV.
+                    Enjoy on any Device.
                   </p>
                   <p className="text-white font-semibold text-lg md:text-xl">
                     Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
                     Blu-ray players and more.
                   </p>
                 </div>
-                <div className="mt-5 lg:mt-0 lg:w-1/2 flex justify-center">
-                  <img
-                    alt="TV"
-                    src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
-                    className="w-full max-w-lg"
-                  />
-                </div>
+                <Image
+                  alt="TV"
+                  src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
+                  className="w-full max-w-lg"
+                  width={500}
+                  height={300}
+                  unoptimized={true}
+                />
               </div>
             </div>
-
-            <hr />
-            <hr />
           </div>
         </>
       </div>
