@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,22 +9,26 @@ export default function Home() {
         <>
           {/* component */}
           <div>
-            <div
-              className="h-screen flex justify-center items-center bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url("https://assets.nflxext.com/ffe/siteui/vlv3/c0a32732-b033-43b3-be2a-8fee037a6146/2fe6e3c0-5613-4625-a0c1-3d605effd10b/IN-en-20210607-popsignuptwoweeks-perspective_alpha_website_large.jpg")',
-              }}
-            >
-              <div className="space-y-5 px-[20px]">
+            <div className="h-screen flex justify-center items-center bg-cover bg-center bg-[linear-gradient(111deg,_#00092b,_#000000c4)]">
+              <div className="space-y-5 px-[20px] ">
+                <div>
+                  <Image
+                    width={300}
+                    height={300}
+                    alt=""
+                    src={"/bingo.png"}
+                    className="rounded-[20px]"
+                  />
+                </div>
                 <p className="text-white font-bold md:text-5xl text-2xl flex flex-col items-center">
                   <span className="text-center">
-                    Unlimited movies, TV shows, and more <br />
+                    Bingo Movies
+                    <br />
                   </span>
                 </p>
 
                 <p className="text-white text-lg flex flex-col items-center">
-                  Enjoy all variate of movies collections.
+                  Enjoy all variate of genres
                 </p>
                 <div className="flex flex-row items-center justify-center w-[100%]">
                   <form className="w-[100%]" action={"search"}>
@@ -78,27 +82,6 @@ export default function Home() {
               </div>
             </div>
             <hr />
-            <div className="w-[100%] bg-black">
-              <div className="h-screen max-w-[90vw] mx-auto flex flex-col lg:flex-row items-center justify-center bg-black p-5">
-                <div className="space-y-5 p-5 text-center lg:text-left lg:w-1/2">
-                  <p className="text-white font-bold text-3xl md:text-4xl">
-                    Enjoy on any Device.
-                  </p>
-                  <p className="text-white font-semibold text-lg md:text-xl">
-                    Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
-                    Blu-ray players and more.
-                  </p>
-                </div>
-                <Image
-                  alt="TV"
-                  src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
-                  className="w-full max-w-lg"
-                  width={500}
-                  height={300}
-                  unoptimized={true}
-                />
-              </div>
-            </div>
           </div>
         </>
       </div>
