@@ -12,7 +12,7 @@ export default function myImageLoader({
   //
   console.log();
   if (src.includes("http")) {
-    src = `https://cloudnary-re-v1.uhost.pro/resize?url=${src}&width=${width}`;
+    src = `https://cloundary-temp-test.b-cdn.net/?url=${src}&width=${width}`;
     if (quality) {
       src += `&quality=${quality}`;
     }
